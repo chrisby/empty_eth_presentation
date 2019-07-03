@@ -1,9 +1,10 @@
+# Latex specifics
 *.aux
 *.bbl
 *.blg
 *.log
 *.nav
 *.out
-*.toc
-*.gz
 *.snm
+*.synctex.gz
+*.toc
