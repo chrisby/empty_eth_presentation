@@ -1,0 +1,18 @@
+
+\documentclass{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.11}
+
+\begin{document}
+    \begin{tikzpicture}
+        \begin{axis}[xlabel=time, ylabel=accel, legend pos=outer north east]
+            \addplot[blue, mark=none]
+            table[
+            	x index=1,
+            	y expr=\thisrow{y},
+            	col sep=comma] {../data/ItalyPowerDemand_1.csv};
+            \addlegendentry{channel 1}
+        \end{axis}
+    \end{tikzpicture}
+\end{document}
