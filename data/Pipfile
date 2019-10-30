@@ -9,8 +9,6 @@ verify_ssl = true
 tqdm = "*"
 pandas = "*"
 numpy = "*"
-skelarn = "*"
-sklearn = "*"
 scikit-learn = "*"
 
 [requires]

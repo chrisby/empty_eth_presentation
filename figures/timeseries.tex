@@ -2,17 +2,37 @@
 \documentclass{standalone}
 \usepackage[utf8]{inputenc}
 \usepackage{pgfplots}
-\pgfplotsset{compat=1.11}
+\pgfplotsset{compat=newest}
+
+\usepgfplotslibrary{groupplots}
+\definecolor{printable_1}{RGB}{137, 197, 64}
+\definecolor{printable_2}{RGB}{247, 124, 0}
+\definecolor{printable_3}{RGB}{ 17, 148, 246}
+\definecolor{printable_4}{RGB}{103, 52, 186}
 
 \begin{document}
     \begin{tikzpicture}
-        \begin{axis}[xlabel=time, ylabel=accel, legend pos=outer north east]
-            \addplot[blue, mark=none]
-            table[
-            	x index=1,
-            	y expr=\thisrow{y},
-            	col sep=comma] {../data/ItalyPowerDemand_1.csv};
-            \addlegendentry{channel 1}
-        \end{axis}
+        \begin{groupplot}[
+        	group style = {group size = 2 by 1},
+        	axis line style      = {draw=none},
+        	xlabel = {},
+        	ylabel = {},
+        	ticks = none
+        	]
+
+		   \nextgroupplot[
+		   	xlabel = {\Large $y=1$}
+		   ]
+           \foreach \column in {1,...,13}{
+           		\addplot[printable_1, mark=none] table[x={ind},y index=\column, col sep=comma] {../data/FacesUCR_1.csv};
+           }
+       
+	       \nextgroupplot[
+       		   	xlabel = {\Large $y=2$}
+	       ]
+	       \foreach \column in {1,...,2}{
+	       	\addplot[printable_2, mark=none] table[x={ind},y index=\column, col sep=comma] {../data/FacesUCR_2.csv};
+	       }
+        \end{groupplot}
     \end{tikzpicture}
 \end{document}
