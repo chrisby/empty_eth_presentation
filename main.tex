@@ -7,6 +7,9 @@
 \usepackage{tabularx}								% Helps with scaling the table to content
 \usepackage{natbib}
 
+\usepackage{algorithm}      % `algorithm` environment
+\usepackage{algorithmic}    % pseudocode
+
 \usepackage{pgfplots}								% Because figures with TIKZ & pgfplots are superior 					
 \usepackage{tikz}
 \usepgfplotslibrary{dateplot}
@@ -22,12 +25,28 @@
 \newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
 \newcommand{\rom}[1]
     {\MakeUppercase{\romannumeral #1}}
-    
-\title{ETH Presentation -- Metropolis Style}
-\subtitle{A modern beamer theme}
+
+\newcommand{\shapelet}     {s}                               % one shapelet
+\newcommand{\shapelets}    {\mathcal{S}}                     % set of shapelets
+\newcommand{\oneseries}    {T}                               % one time series
+\newcommand{\allseries}    {\mathcal{T}}                     % set of time series
+\newcommand{\featurevector}{\phi}                            % feature vector
+\newcommand{\landau}[1]    {\mathcal{O}\left(#1\right)}      % complexity symbol
+\renewcommand{\natural}{\mathds{N}}                          % natural numbers
+\newcommand{\longmethod}{Wasserstein Time Series Kernel}
+
+\DeclareMathOperator{\kernel}     {k}                        % generic kernel
+\DeclareMathOperator{\basekernel} {\kernel_{\text{base}}}    % base kernel
+\DeclareMathOperator{\dist}       {dist}                     % distance function
+\DeclareMathOperator{\metric}     {\dist}                    % synonym for  `\dist`
+\DeclareMathOperator{\wasserstein}{W\!}                      % Wasserstein distance
+\DeclareMathOperator{\Method}     {WTK}                      % use this as an operator and make it
+
+\title{A Wasserstein Subsequence Kernel for Time Series}
+\subtitle{}
 \date{\today}
-\author{John Doe, Joanne Doette}
-\institute{}
+\author{\textbf{Christian Bock, Matteo Togninalli}, Elisabetta Ghisu, Thomas Gumbsch, \\ Bastian Rieck, Karsten Borgwardt}
+\institute{Department of Biosystems Science and Engineering \\ Machine Learning and Computational Biology Group}
 \titlegraphic{
 	\hfill
 	\includegraphics[width=1.4cm]{eth_logo_kurz_pos.pdf}
@@ -41,7 +60,7 @@
 
 \maketitle
 
-\begin{comment}
+
 \begin{frame}{ETH Colors}
 	\begin{tikzpicture}
 	\footnotesize
@@ -65,21 +84,32 @@
         \node at (8,-0.2) {ETHi};
 	\end{tikzpicture}
 \end{frame}
-\end{comment}
 
 
-\begin{frame}{Table of contents}
+
+\begin{frame}{Table of contents (internal)}
   \setbeamertemplate{section in toc}[sections numbered]
   \tableofcontents[hideallsubsections]
 \end{frame}
 
-\section{Background}
+\section{Motivation}
 
-\begin{frame}{First Frame}    
-    \begin{alertblock}{Fill Me With Content}
-    	Here!
-    \end{alertblock}
+\begin{frame}{Time Series Classification in a Nutshell}
+    \centering
+	\includegraphics[width=\textwidth]{combines_ts_hist.pdf}
 \end{frame}
+
+\section{Time Series Decomposition}
+\section{Optimal Transport and the Wasserstein Distance}
+
+\section{A Wasserstein Kernel for Time Series}
+\input{wtk.tex}
+
+\section{Results}
+\input{results.tex}
+
+\section{Take aways}
+
 
 
 \begin{frame}[standout]
