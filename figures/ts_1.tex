@@ -1,0 +1,33 @@
+
+\documentclass[tikz, crop]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+
+\usepgfplotslibrary{groupplots}
+\definecolor{printable_1}{RGB}{137, 197, 64}
+\definecolor{printable_2}{RGB}{247, 124, 0}
+\definecolor{printable_3}{RGB}{ 17, 148, 246}
+\definecolor{printable_4}{RGB}{103, 52, 186}
+
+\usetikzlibrary{external}
+
+\newcommand{\dataset}{ArrowHead}
+
+
+\begin{document}
+    \begin{tikzpicture}
+        \begin{axis}[
+        	axis line style      = {draw=none},
+        	xlabel = {},
+        	ylabel = {},
+        	ticks = none,
+        	width= 10cm,
+        	height= 5cm
+        	]
+
+           	\addplot[printable_1, mark=none, very thick] table[x={ind},y index=1, col sep=comma] {../data/\dataset_0.csv};
+
+		\end{axis}
+    \end{tikzpicture}
+\end{document}
