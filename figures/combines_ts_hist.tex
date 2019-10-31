@@ -16,11 +16,20 @@
 
 \begin{document}
     \begin{tikzpicture}
+	    	\node (is) at (-9, 0.35) {Input Space $\mathcal{I}$};
+	    	\node (fs) at (-9, -0.92) {Feature Space  $\mathcal{F}$};
+	    	\node  (c) at (-9, -2.25) {Classifier  $c(\cdot)$};
+    
+    		\draw[-stealth] (is.south) -- (fs.north);
+    		\draw[-stealth] (fs.south) -- (c.north);
+
+    		%\draw (-8, -2.25) -- (10, -2.25);
+    
 	        \node[inner sep=0pt] (ts) at (0,0)
-	        {\includegraphics[width=1.1\textwidth]{figures/timeseries.pdf}};
+	        {\includegraphics[width=1.1\textwidth]{timeseries.pdf}};
 	        
 	        \node[inner sep=0pt] (hist) at (0.07,-4.7)
-	        {\includegraphics[width=.8\textwidth]{figures/histograms.pdf}};
+	        {\includegraphics[width=.8\textwidth]{histograms.pdf}};
 			
 			\draw[-stealth, thick] ($(ts.south)+ (0.07, 0)$) -- node {} +(0, -0.8);				
 			\draw[-stealth, thick] ($(ts.south)+ (0.07, 0)$) -- node {} +(-2.6, -0.8);
