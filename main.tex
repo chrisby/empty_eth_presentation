@@ -10,11 +10,21 @@
 \usepackage{algorithm}      % `algorithm` environment
 \usepackage{algorithmic}    % pseudocode
 
-\usepackage{pgfplots}								% Because figures with TIKZ & pgfplots are superior 					
+\usepackage{pgfplots}								% Because figures with DIKZ & pgfplots are superior 		
 \usepackage{tikz}
-\usepgfplotslibrary{dateplot}
-\usepgfplotslibrary{groupplots}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Figures & graphics
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usetikzlibrary{calc}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.geometric}
+
+\usepgfplotslibrary{colorbrewer}
+\usepgfplotslibrary{external}
 \usepgfplotslibrary{fillbetween}
+\usepgfplotslibrary{groupplots}
+\usepgfplotslibrary{dateplot}
 \pgfplotsset{compat=1.14}
 
 \usepackage{caption}								% In presentation we should keep the caption little smaller
