@@ -8,7 +8,11 @@
   },
 }
 
-\begin{frame}{From Distance to Kernels}
+% Self arc
+\def\centerarc[#1](#2)(#3:#4:#5)% Syntax: [draw options] (center) (initial angle:final angle:radius)
+    { \draw[#1] ($(#2)+({#5*cos(#3)},{#5*sin(#3)})$) arc (#3:#4:#5); }
+
+\begin{frame}{Time Series Pairwise Distance Calculation}
     \begin{figure}[t]
   \centering
     \begin{tikzpicture}
@@ -17,15 +21,14 @@
         height     =  8cm,
         width      =  11.0cm,
       ]
-        \addplot[Set1-A, thick, no marks] table[x=x, y=a, col sep=comma] {./data/overview_TS_uneq_length_1.csv};
+        \addplot[Set1-A, thick, no marks, visible on=<1-5>] table[x=x, y=a, col sep=comma] {./data/overview_TS_uneq_length_1.csv};
         \addplot[
           Set1-B, thick, no marks,
           y filter/.expression = {
             y - 10
           },
-          visible on=<1>,
-          transparent on=<2->
-        %   \only<2->{opacity=0.1,}
+          visible on=<2>,
+          transparent on=<3-5>
         ] table[x=x, y=a, col sep=comma] {./data/overview_TS_2.csv};
         
         \addplot[
@@ -36,8 +39,8 @@
           y filter/.expression = {
             y - 10
           },
-          visible on=<2>,
-          transparent on=<3->
+          visible on=<3>,
+          transparent on=<4-5>
         ] table[x=x, y=a, col sep=comma] {./data/overview_TS_3.csv};
         \addplot[
           Set1-B, thick, no marks,
@@ -47,8 +50,8 @@
           y filter/.expression = {
             y - 10
           },
-          visible on=<3>,
-          transparent on=<4->
+          visible on=<4>,
+          transparent on=<5-5>
         ] table[x=x, y=a, col sep=comma] {./data/overview_TS_3.csv};
         \addplot[
           Set1-B, thick, no marks,
@@ -58,34 +61,72 @@
           y filter/.expression = {
             y - 10
           },
-          visible on=<4>,
+          visible on=<5>,
         ] table[x=x, y=a, col sep=comma] {./data/overview_TS_2.csv};
         % TODO create new timeseries..
         
-        \draw<1>[draw opacity=0.8, line width=1pt] (50.00,90.00) -- (50.00,40.);
-        \draw<2>[draw opacity=0.8, line width=1pt] (50.00,90.00) -- (180.00,40.);
-        \draw<3>[draw opacity=0.8, line width=1pt] (50.00,90.00) -- (310.00,40.);
-        \draw<4>[draw opacity=0.8, line width=1pt] (50.00,90.00) -- (440.00,40.);
-        % \draw[draw opacity=0.8, line width=0.6pt] (5.00,0.08) -- (25.00,-9.75);
-        % \draw[draw opacity=0.8, line width=0.6pt] (10.00,1.38) -- (30.00,-7.66);
-        % \draw[draw opacity=0.8, line width=0.6pt] (15.00,3.95) -- (35.00,-6.24);
-        % \draw[draw opacity=0.8, line width=0.6pt] (20.00,1.87) -- (60.00,-9.92);
-        % \draw[draw opacity=0.8, line width=0.6pt] (25.00,0.15) -- (0.00,-9.98);
-        % \draw[draw opacity=0.8, line width=0.15882352941176556pt] (30.00,-0.04) -- (70.00,-10.03);
-        % \draw[draw opacity=0.8, line width=0.6pt] (35.00,0.01) -- (90.00,-10.01);
-        % \draw[draw opacity=0.8, line width=0.15882352941176434pt] (40.00,-0.01) -- (65.00,-9.98);
-        % \draw[draw opacity=0.8, line width=0.6pt] (45.00,-0.00) -- (10.00,-10.01);
-        % \draw[draw opacity=0.8, line width=0.30588235294117666pt] (50.00,-0.01) -- (75.00,-9.98);
-        % \draw[draw opacity=0.8, line width=0.45294117647058646pt] (55.00,0.00) -- (85.00,-10.01);
-        % \draw[draw opacity=0.8, line width=0.6pt] (60.00,-0.00) -- (105.00,-9.99);
-        % \draw[draw opacity=0.8, line width=0.6pt] (65.00,-0.01) -- (5.00,-10.03);
-        % \draw[draw opacity=0.8, line width=0.4529411764705877pt] (70.00,0.01) -- (80.00,-9.96);
-        % \draw[draw opacity=0.8, line width=0.15882352941176434pt] (75.00,0.02) -- (15.00,-9.99);
-        % \draw[draw opacity=0.8, line width=0.30588235294117666pt] (80.00,0.38) -- (50.00,-9.60);
-        % \draw[draw opacity=0.8, line width=0.30588235294117666pt] (85.00,1.56) -- (55.00,-8.53);
+        \filldraw[fill=ETHa, draw=ETHa, fill opacity=0.0] (280,112) rectangle (320,128);
+        \filldraw<2->[fill=ETHa, draw=ETHa, fill opacity=0.7] (320,112) rectangle (360,128);
+        \filldraw<3->[fill=ETHa, draw=ETHa, fill opacity=0.6] (360,112) rectangle (400,128);
+        \filldraw<4->[fill=ETHa, draw=ETHa, fill opacity=0.2] (400,112) rectangle (440,128);
+        \filldraw<5->[fill=ETHa, draw=ETHa, fill opacity=0.8] (440,112) rectangle (480,128);
+        
+        \draw<2>[draw opacity=0.8, line width=1pt] (50.00,90.00) -- (50.00,40.);
+        \node<1-5> at (200,120) {$\wasserstein_1\left(\oneseries_0, \oneseries_\only<1>{0}\only<2>{1}\only<3>{2}\only<4>{3}\only<5>{4}\right)$};
+        \draw<3>[draw opacity=0.8, line width=1pt] (50.00,90.00) -- (180.00,40.);
+        \draw<4>[draw opacity=0.8, line width=1pt] (50.00,90.00) -- (310.00,40.);
+        \draw<5>[draw opacity=0.8, line width=1pt] (50.00,90.00) -- (440.00,40.);
+        % \centerarc[black,thick](10,100)(30:270:10)
+        
+        % SECOND ROW
+        \addplot[
+          Set1-B, thick, no marks,
+          y filter/.expression = {
+            y - 1
+          },
+          visible on=<6->
+        ] table[x=x, y=a, col sep=comma] {./data/overview_TS_2.csv};
+        
+        \addplot[
+          Set1-A, thick, no marks,
+          y filter/.expression = {
+            y - 10
+          },
+          visible on=<6>,
+          transparent on=<7->
+        ] table[x=x, y=a, col sep=comma] {./data/overview_TS_uneq_length_1.csv};
+        \addplot[ % Had to copy it twice
+          Set1-B, thick, no marks,
+          x filter/.expression = {
+            x + 130
+          },
+          y filter/.expression = {
+            y - 10
+          },
+          visible on=<8>,
+        ] table[x=x, y=a, col sep=comma] {./data/overview_TS_3.csv};
+        \filldraw<6->[fill=ETHa, draw=ETHa, fill opacity=0.7] (280,98) rectangle (320,112);
+        \filldraw<7->[fill=ETHa, draw=ETHa, fill opacity=0.0] (320,98) rectangle (360,112);
+        \filldraw<8->[fill=ETHa, draw=ETHa, fill opacity=0.4] (360,98) rectangle (400,112);
+        
+        
+        \draw<6>[draw opacity=0.8, line width=1pt] (50.00,70.00) -- (50.00,40.);
+        \node at (200,106) {$\wasserstein_1\left(\oneseries_1, \oneseries_\only<6>{0}\only<7>{1}\only<8>{2}\right)$};
+        \draw<8>[draw opacity=0.8, line width=1pt] (50.00,70.00) -- (180.00,40.);
+        
+        
       \end{axis}
     \end{tikzpicture}
   \end{figure}
+\end{frame}
+
+\begin{frame}{Wasserstein Distance Matrix}
+    \centering
+    \LARGE
+    % TODO: CREATE PDF WITH MATRIX
+    $\mathcal{D} = $\includegraphics[width=0.1\textwidth]{figures/wassmatrix.tex}$ \in \real^{|\allseries|\times |\allseries|}$ \\
+    $\mathcal{D}_{ij} = \wasserstein_1\left(\oneseries_i, \oneseries_j\right)
+    $
 \end{frame}
 
 \begin{frame}{From Distance to Kernels}
