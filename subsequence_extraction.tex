@@ -10,8 +10,12 @@
 	\only<4>{\includegraphics[width=0.8\textwidth]{figures/sliding_window_2.pdf} \\}
 	\only<5>{\includegraphics[width=0.8\textwidth]{figures/sliding_window_3.pdf} \\}
 	\only<6>{\includegraphics[width=0.8\textwidth]{figures/sliding_window_4.pdf} \\}
-	\vspace*{1cm}
+	\vspace*{0.5cm}
 	\begin{tikzpicture}
+	
+		\only<2-6>\draw [decorate, decoration={brace, amplitude=5pt, raise=2pt, mirror}] (-2.5,-1.5) -- (6.0,-1.5) node [below, midway, yshift=-2mm] {Subsequence Collection};
+		
+	
 		\only<2-6>{\node[inner sep=0pt] (ts) at (-2,-1)
 		{\includegraphics[height=1.2cm]{figures/subsequences_for_SW_0.pdf}};}
 		
