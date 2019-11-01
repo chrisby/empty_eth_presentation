@@ -1,5 +1,91 @@
+\tikzset{
+  invisible/.style={opacity=0},
+  transparent/.style={opacity=0.2},
+  visible on/.style={alt={#1{}{invisible}}},
+  transparent on/.style={alt={#1{transparent}{}}},
+  alt/.code args={<#1>#2#3}{%
+    \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}} % \pgfkeysalso doesn't change the path
+  },
+}
+
 \begin{frame}{From Distance to Kernels}
-    Intuitive explanation
+    \begin{figure}[t]
+  \centering
+    \begin{tikzpicture}
+      \begin{axis}[%
+        axis lines = none,
+        height     =  8cm,
+        width      =  11.0cm,
+      ]
+        \addplot[Set1-A, thick, no marks] table[x=x, y=a, col sep=comma] {./data/overview_TS_uneq_length_1.csv};
+        \addplot[
+          Set1-B, thick, no marks,
+          y filter/.expression = {
+            y - 10
+          },
+          visible on=<1>,
+          transparent on=<2->
+        %   \only<2->{opacity=0.1,}
+        ] table[x=x, y=a, col sep=comma] {./data/overview_TS_2.csv};
+        
+        \addplot[
+          Set1-B, thick, no marks,
+          x filter/.expression = {
+            x + 130
+          },
+          y filter/.expression = {
+            y - 10
+          },
+          visible on=<2>,
+          transparent on=<3->
+        ] table[x=x, y=a, col sep=comma] {./data/overview_TS_3.csv};
+        \addplot[
+          Set1-B, thick, no marks,
+          x filter/.expression = {
+            x + 260
+          },
+          y filter/.expression = {
+            y - 10
+          },
+          visible on=<3>,
+          transparent on=<4->
+        ] table[x=x, y=a, col sep=comma] {./data/overview_TS_3.csv};
+        \addplot[
+          Set1-B, thick, no marks,
+          x filter/.expression = {
+            x + 390
+          },
+          y filter/.expression = {
+            y - 10
+          },
+          visible on=<4>,
+        ] table[x=x, y=a, col sep=comma] {./data/overview_TS_2.csv};
+        % TODO create new timeseries..
+        
+        \draw<1>[draw opacity=0.8, line width=1pt] (50.00,90.00) -- (50.00,40.);
+        \draw<2>[draw opacity=0.8, line width=1pt] (50.00,90.00) -- (180.00,40.);
+        \draw<3>[draw opacity=0.8, line width=1pt] (50.00,90.00) -- (310.00,40.);
+        \draw<4>[draw opacity=0.8, line width=1pt] (50.00,90.00) -- (440.00,40.);
+        % \draw[draw opacity=0.8, line width=0.6pt] (5.00,0.08) -- (25.00,-9.75);
+        % \draw[draw opacity=0.8, line width=0.6pt] (10.00,1.38) -- (30.00,-7.66);
+        % \draw[draw opacity=0.8, line width=0.6pt] (15.00,3.95) -- (35.00,-6.24);
+        % \draw[draw opacity=0.8, line width=0.6pt] (20.00,1.87) -- (60.00,-9.92);
+        % \draw[draw opacity=0.8, line width=0.6pt] (25.00,0.15) -- (0.00,-9.98);
+        % \draw[draw opacity=0.8, line width=0.15882352941176556pt] (30.00,-0.04) -- (70.00,-10.03);
+        % \draw[draw opacity=0.8, line width=0.6pt] (35.00,0.01) -- (90.00,-10.01);
+        % \draw[draw opacity=0.8, line width=0.15882352941176434pt] (40.00,-0.01) -- (65.00,-9.98);
+        % \draw[draw opacity=0.8, line width=0.6pt] (45.00,-0.00) -- (10.00,-10.01);
+        % \draw[draw opacity=0.8, line width=0.30588235294117666pt] (50.00,-0.01) -- (75.00,-9.98);
+        % \draw[draw opacity=0.8, line width=0.45294117647058646pt] (55.00,0.00) -- (85.00,-10.01);
+        % \draw[draw opacity=0.8, line width=0.6pt] (60.00,-0.00) -- (105.00,-9.99);
+        % \draw[draw opacity=0.8, line width=0.6pt] (65.00,-0.01) -- (5.00,-10.03);
+        % \draw[draw opacity=0.8, line width=0.4529411764705877pt] (70.00,0.01) -- (80.00,-9.96);
+        % \draw[draw opacity=0.8, line width=0.15882352941176434pt] (75.00,0.02) -- (15.00,-9.99);
+        % \draw[draw opacity=0.8, line width=0.30588235294117666pt] (80.00,0.38) -- (50.00,-9.60);
+        % \draw[draw opacity=0.8, line width=0.30588235294117666pt] (85.00,1.56) -- (55.00,-8.53);
+      \end{axis}
+    \end{tikzpicture}
+  \end{figure}
 \end{frame}
 
 \begin{frame}{From Distance to Kernels}
