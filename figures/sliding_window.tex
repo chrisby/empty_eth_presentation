@@ -1,0 +1,57 @@
+
+\documentclass{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+
+\usepgfplotslibrary{groupplots}
+\definecolor{printable_1}{RGB}{137, 197, 64}
+\definecolor{printable_2}{RGB}{247, 124, 0}
+\definecolor{printable_3}{RGB}{ 17, 148, 246}
+\definecolor{printable_4}{RGB}{103, 52, 186}
+
+\usetikzlibrary{external}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows}
+
+\newcommand{\dataset}{ArrowHead}
+
+
+\begin{document}
+    \begin{tikzpicture}
+        \begin{groupplot}[
+        	group style = {group size = 2 by 1},
+        	axis line style      = {draw=none},
+        	xlabel = {},
+        	ylabel = {},
+        	ticks = none,
+        	width= 10cm,
+        	height= 5cm,
+        	]
+
+		   \nextgroupplot[
+		   	%xlabel = {\Large $y=1$}
+		   ]		   
+          	\addplot[printable_1, mark=none, very thick] table[x={ind},y index=1, col sep=comma] {../data/\dataset_0.csv};
+			
+			% First rect
+			\draw[] (0,-2) rectangle (45, 1.7);
+			\node (w) at (22.5, -2.2) {$w$};
+			\draw[-stealth] (w.east) -- (45, -2.2);
+			\draw[-stealth] (w.west) -- (0, -2.2);
+			 
+			 % Second rect
+			\draw[] (50,-2) rectangle (95, 1.7);
+			\draw[stealth-stealth] (0, -1.3) -- (50, -1.3);
+			\node (s) at (25, -1.15) {$s$};
+		
+       
+	       %\nextgroupplot[
+       		  % 	xlabel = {\Large $y=2$}
+	       %]
+			%\addplot[printable_2, mark=none, very thick] table[x={ind},y index=1, col sep=comma] {../data/\dataset_1.csv};
+
+
+		\end{groupplot}			
+    \end{tikzpicture}
+\end{document}
