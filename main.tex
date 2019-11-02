@@ -111,18 +111,20 @@
 \section{Feature Space: Subsequences and Optimal Transport}
 \begin{frame}{Subsequence Extraction}
 	\input{subsequence_extraction.tex}	
-	%\only<2>{
-%		\begin{tikzpicture}
-%			\node[inner sep=0pt] (ts) at (0,-1)
-%			{\includegraphics[height=1.2cm]{figures/subsequences_3.pdf}};
-%			
-%			\node[inner sep=0pt] (ts) at (-3.8,-3)
-%			{\includegraphics[height=3.9cm]{figures/subsequences_2.pdf}};	
-%		\end{tikzpicture}
-%	}
+\end{frame}
+
+\begin{frame}{Subsequence Distance Matrix}
+	\input{subsequences_distance.tex}
 \end{frame}
 
 \section{Optimal Transport and the Wasserstein Distance}
+
+\begin{frame}{The Swiss Kantorovich Problem}
+	\only<1>{\includegraphics[width=\textwidth]{figures/kantorovich_0.pdf}}
+	\only<2>{\includegraphics[width=\textwidth]{figures/kantorovich_1.pdf}}
+	\only<3>{\includegraphics[width=\textwidth]{figures/kantorovich_2.pdf}}
+	\only<4>{\includegraphics[width=\textwidth]{figures/kantorovich_3.pdf}}
+\end{frame}
 
 \section{A Wasserstein Kernel for Time Series}
 \input{wtk.tex}
