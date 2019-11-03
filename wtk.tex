@@ -109,6 +109,29 @@
         \filldraw<7->[fill=ETHa, draw=ETHa, fill opacity=0.0] (320,98) rectangle (360,112);
         \filldraw<8->[fill=ETHa, draw=ETHa, fill opacity=0.4] (360,98) rectangle (400,112);
         
+        % Complete the square for future references
+        
+        % \filldraw<9->[fill=ETHa, draw=ETHa, fill opacity=0.8] (400,98) rectangle (440,112);
+        % \filldraw<9->[fill=ETHa, draw=ETHa, fill opacity=0.5] (440,98) rectangle (480,112);
+        
+        % \filldraw<9->[fill=ETHa, draw=ETHa, fill opacity=0.6] (280,82) rectangle (320,98);
+        % \filldraw<9->[fill=ETHa, draw=ETHa, fill opacity=0.4] (320,82) rectangle (360,98);
+        % \filldraw<9->[fill=ETHa, draw=ETHa, fill opacity=0.0] (360,82) rectangle (400,98);
+        % \filldraw<9->[fill=ETHa, draw=ETHa, fill opacity=0.1] (400,82) rectangle (440,98);
+        % \filldraw<9->[fill=ETHa, draw=ETHa, fill opacity=0.2] (440,82) rectangle (480,98);
+        
+        % \filldraw<9->[fill=ETHa, draw=ETHa, fill opacity=0.2] (280,66) rectangle (320,82);
+        % \filldraw<9->[fill=ETHa, draw=ETHa, fill opacity=0.8] (320,66) rectangle (360,82);
+        % \filldraw<9->[fill=ETHa, draw=ETHa, fill opacity=0.1] (360,66) rectangle (400,82);
+        % \filldraw<9->[fill=ETHa, draw=ETHa, fill opacity=0.0] (400,66) rectangle (440,82);
+        % \filldraw<9->[fill=ETHa, draw=ETHa, fill opacity=0.2] (440,66) rectangle (480,82);
+        
+        % \filldraw<9->[fill=ETHa, draw=ETHa, fill opacity=0.8] (280,50) rectangle (320,66);
+        % \filldraw<9->[fill=ETHa, draw=ETHa, fill opacity=0.5] (320,50) rectangle (360,66);
+        % \filldraw<9->[fill=ETHa, draw=ETHa, fill opacity=0.2] (360,50) rectangle (400,66);
+        % \filldraw<9->[fill=ETHa, draw=ETHa, fill opacity=0.2] (400,50) rectangle (440,66);
+        % \filldraw<9->[fill=ETHa, draw=ETHa, fill opacity=0.0] (440,50) rectangle (480,66);
+        
         
         \draw<6>[draw opacity=0.8, line width=1pt] (50.00,70.00) -- (50.00,40.);
         \node at (200,106) {$\wasserstein_1\left(\oneseries_1, \oneseries_\only<6>{0}\only<7>{1}\only<8>{2}\right)$};
@@ -120,13 +143,13 @@
   \end{figure}
 \end{frame}
 
+
 \begin{frame}{Wasserstein Distance Matrix}
     \centering
     \LARGE
-    % TODO: CREATE PDF WITH MATRIX
-    $\mathcal{D} = $\includegraphics[width=0.1\textwidth]{figures/wassmatrix.tex}$ \in \real^{|\allseries|\times |\allseries|}$ \\
-    $\mathcal{D}_{ij} = \wasserstein_1\left(\oneseries_i, \oneseries_j\right)
-    $
+    $\mathcal{D} = $\includegraphics[width=0.5\textwidth,valign=c]{figures/distance_matrix.pdf} $\in \real^{|\allseries|\times |\allseries|}$ \\
+    $\mathcal{D}_{ij} = \wasserstein_1\left(\oneseries_i, \oneseries_j\right)$
+    
 \end{frame}
 
 \begin{frame}{From Distance to Kernels}
