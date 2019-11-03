@@ -8,3 +8,6 @@
 *.snm
 *.synctex.gz
 *.toc
+data/*
+*.auxlock
+*.md5

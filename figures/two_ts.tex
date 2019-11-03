@@ -1,0 +1,48 @@
+
+\documentclass{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+
+\usepgfplotslibrary{groupplots}
+\definecolor{printable_1}{RGB}{137, 197, 64}
+\definecolor{printable_2}{RGB}{247, 124, 0}
+\definecolor{printable_3}{RGB}{ 17, 148, 246}
+\definecolor{printable_4}{RGB}{103, 52, 186}
+
+\usetikzlibrary{external}
+
+\newcommand{\dataset}{ArrowHead}
+
+
+\begin{document}
+    \begin{tikzpicture}
+        \begin{groupplot}[
+        	group style = {group size = 2 by 1},
+        	axis line style      = {draw=none},
+        	xlabel = {},
+        	ylabel = {},
+        	ticks = none,
+        	width= 10cm,
+        	height= 5cm
+        	]
+
+		   \nextgroupplot[title=\LARGE $A$]
+		   \addplot[printable_1, mark=none, very thick] table[x={ind},y index=1, col sep=comma] {../data/\dataset_0.csv};
+
+       
+	       \nextgroupplot[title=\LARGE $B$]
+	       	\addplot[printable_2, mark=none, very thick] table[x={ind},y index=1, col sep=comma] {../data/\dataset_1.csv};
+       
+	        \end{groupplot}
+	        
+	        % Bracket
+	       % \draw [decorate, decoration={brace, amplitude=10pt, mirror}, xshift=0pt, yshift=0pt, thick] (0.5, 0) -- (17.4, 0) node (dataNode) [black, below, midway, yshift=-0.5cm] 
+	        %{\LARGE $\mathcal{F}
+	        	%=\{(t_0, y_0), \dots, (t_n, y_n)\}
+	        %	$};
+
+	        
+			
+    \end{tikzpicture}
+\end{document}

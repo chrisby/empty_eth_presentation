@@ -1,0 +1,77 @@
+
+\documentclass{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+
+\usepgfplotslibrary{groupplots}
+\definecolor{printable_1}{RGB}{137, 197, 64}
+\definecolor{printable_2}{RGB}{247, 124, 0}
+\definecolor{printable_3}{RGB}{ 17, 148, 246}
+\definecolor{printable_4}{RGB}{103, 52, 186}
+
+\usetikzlibrary{external}
+\usepackage{calc}
+
+\definecolor{vispCol}{RGB}{255, 255, 255}
+\definecolor{printable_2}{RGB}{247, 124, 0}
+\definecolor{printable_3}{RGB}{ 17, 148, 246}
+\definecolor{printable_4}{RGB}{103, 52, 186}
+
+\begin{document}
+    \begin{tikzpicture}
+    	\def\cheeseSize{3cm}
+    	\def\hutSize{4cm}
+    	
+		\node[inner sep=0, opacity=0.7] at (0,0)
+		{\includegraphics[width=1834px]{swiss_alps.png}};
+    	
+    	% Visp
+      \node[inner sep=0pt] (visp) at (-13,-11)
+    	{\includegraphics[width=\cheeseSize]{cheese.png}};
+	    \node[scale=8, yellow] at ($(visp.east)+(2,0)$) {90};
+    	
+	    % Raron
+    	\node[inner sep=0pt] (raron) at (-25,-6)
+    	{\includegraphics[width=\cheeseSize]{cheese.png}};
+    	 \node[scale=8, yellow] at ($(raron.south)+(0,-2)$) {60};
+    	
+    	% Termen
+    	%\node[inner sep=0pt] (termen) at (5, -2)
+    	%{\includegraphics[width=\cheeseSize]{cheese.png}};
+    	
+    	% Fiesch
+    	\node[inner sep=0pt] (fiesch) at (14, 4)
+    	{\includegraphics[width=\cheeseSize]{cheese.png}};
+    	\node[scale=8, yellow] at ($(fiesch.east)+(2.5,0)$) {150};
+    	
+    	
+    	% Huts
+    	\node[inner sep=0pt] (hut1) at (-19,4)
+    	{\includegraphics[width=\hutSize]{hut.png}};
+    	\node[scale=8, black] at ($(hut1.south west)+(-1,-1)$) {120};
+    	
+    	\node[inner sep=0pt] (hut2) at (-10, 1)
+    	{\includegraphics[width=\hutSize]{hut.png}};
+    	\node[scale=8, black] at ($(hut2.north east)+(1,1)$) {90};
+    	
+    	\node[inner sep=0pt] (hutGrindel) at (-3, 13)
+    	{\includegraphics[width=\hutSize]{hut.png}};
+    	\node[scale=8, black] at ($(hutGrindel.east)+(1.5,0)$) {90};
+    	
+    	% Raron to hut1
+    	\draw[line width=3mm, red, dotted] (raron.east) -- ++(5,5) -- ++(1,2) -- (hut1.south);
+    	% Raron to hut2
+    	\draw[line width=3mm, red, dotted] (raron.east) -- ++(5,-1) -- ++(2,4) -- ++(2,-2) -- (hut2.south);
+    	% Raron to grindelwald
+    	\draw[line width=3mm, red, dotted] (raron.west) -- ++(-4,4) -- ++(3,4) -- (hutGrindel.south west);
+    	
+  	    % Visp to hut1
+    	\draw[line width=3mm, blue, dotted] (visp.north west) -- ++(-0.5,4) -- ++(-1.3,2.3) -- ++(-0.6, 4) -- (hut1.south);
+    	% Visp to hut2
+    	\draw[line width=3mm, blue, dotted] (visp.north) -- ++(3,4) -- (hut2.south);
+    	% Visp to grindelwal
+    	\draw[line width=3mm, blue, dotted] (visp.north) --  ++(2.2,3) -- ++(10,2) -- ++(2,6) -- ++(5,4) -- (hutGrindel.south);
+    	
+    \end{tikzpicture}
+\end{document}

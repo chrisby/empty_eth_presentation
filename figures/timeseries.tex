@@ -1,0 +1,85 @@
+
+\documentclass{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+
+\usepgfplotslibrary{groupplots}
+\definecolor{printable_1}{RGB}{137, 197, 64}
+\definecolor{printable_2}{RGB}{247, 124, 0}
+\definecolor{printable_3}{RGB}{ 17, 148, 246}
+\definecolor{printable_4}{RGB}{103, 52, 186}
+
+\usetikzlibrary{external}
+
+\newcommand{\dataset}{ArrowHead}
+
+
+\begin{document}
+    \begin{tikzpicture}
+        \begin{groupplot}[
+        	group style = {group size = 3 by 1},
+        	axis line style      = {draw=none},
+        	xlabel = {},
+        	ylabel = {},
+        	ticks = none,
+        	width= 10cm,
+        	height= 5cm
+        	]
+
+		   \nextgroupplot[
+		   	%xlabel = {\Large $y=1$}
+		   ]
+		   \pgfplotstableread[col sep=comma]{../data/\dataset_0.csv}\mytable
+		   \pgfplotstablegetcolsof{\mytable}
+		   \pgfmathparse{\pgfplotsretval-1}
+		   
+           \foreach \column in {1,...,\pgfmathresult}{
+           		\addplot[printable_1, mark=none] table[x={ind},y index=\column, col sep=comma] {../data/\dataset_0.csv};
+           }
+       
+	       \nextgroupplot[
+       		  % 	xlabel = {\Large $y=2$}
+	       ]
+	       \pgfplotstableread[col sep=comma]{../data/\dataset_1.csv}\mytable
+	       \pgfplotstablegetcolsof{\mytable}
+	       \pgfmathparse{\pgfplotsretval-1}
+	       
+	       \foreach \column in {1,...,\pgfmathresult}{
+	       	\addplot[printable_2, mark=none] table[x={ind},y index=\column, col sep=comma] {../data/\dataset_1.csv};
+	       }
+       
+	       \nextgroupplot[
+	      		%xlabel = {\Large $y=3$}
+	       ]
+	       \pgfplotstableread[col sep=comma]{../data/\dataset_2.csv}\mytable
+	       \pgfplotstablegetcolsof{\mytable}
+	       \pgfmathparse{\pgfplotsretval-1}
+	       
+	       \foreach \column in {1,...,\pgfmathresult}{
+	       	\addplot[printable_3, mark=none] table[x={ind},y index=\column, col sep=comma] {../data/\dataset_2.csv};
+	       }
+	        \end{groupplot}
+	        
+	        % Bracket
+	        \draw [decorate, decoration={brace, amplitude=10pt, mirror}, xshift=0pt, yshift=0pt, thick] (0.5, 0) -- (27, 0) node (dataNode) [black, below, midway, yshift=-0.5cm] 
+	        {\LARGE $\mathcal{D}
+	        	%=\{(t_0, y_0), \dots, (t_n, y_n)\}
+	        	$};
+	        
+	        % Rect
+	        %\draw[fill=lightgray!20] (0.5,-1.3) rectangle (27,-3.9);
+	        
+	        % Feature representation
+	        \node (featureRep) at (13.75, -3.5) {\LARGE $\mathcal{D}_{\mathcal{F}}
+	        	%=\{(f_0, y_0), \dots, (f_n, y_n)\}
+	        	$};	        
+	        \draw[-stealth, very thick] (dataNode.south) -- (featureRep.north) node [right, midway] {\Large$g: \mathcal{I} \rightarrow \mathcal{F}$};
+	        
+	        % classifier
+	        \node (clf) at (13.75, -6.15) {\LARGE $c(f)$};
+ 	        \draw[-stealth, very thick] (featureRep.south) -- (clf.north) node [right, midway] {\Large$c: \mathcal{F} \rightarrow \mathcal{Y}$};
+	        
+			
+    \end{tikzpicture}
+\end{document}
